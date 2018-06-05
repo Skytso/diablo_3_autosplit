@@ -4,10 +4,7 @@ import mss
 import mss.tools
 import numpy as np
 from matplotlib import pyplot as plt
-import pyautogui
-from pynput.keyboard import Key, Controller
-
-k = Controller()
+import socket
 
 # List of split images to compare
 split_template = [
@@ -28,6 +25,13 @@ regions = [
 
 split_num = 0
 
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+try:
+    s.connect(("localhost", 16834))
+except socket.error as exc:
+    print("Caught exception socket.error : %s" % exc)
+    print("Ensure LiveSplit's Server Component is enabled.")
+
 # Load images into the list
 for i in range(len(split_template)):
     template = cv2.imread(split_template[i])
@@ -46,17 +50,15 @@ def compare(template, screen):
     res = cv2.matchTemplate(screen, template, method)
     min, max, loc1, loc2 = cv2.minMaxLoc(res)
     if max > .8:
-        print(max)
         return True # images match
     else:
-        print(max)
         return False # images don't match
 
 # Main loop
 while (split_num < len(split_template)):
     if compare(split_template[split_num], capture(regions[split_num])):
-        pyautogui.press('num0') #trigger the split
-        print("Split triggered: " + str(split_num))
+        s.send(b"startorsplit\r\n") #trigger the split
         split_num += 1
+        print("Split triggered: " + str(split_num))
 
 print("Run ended.")
