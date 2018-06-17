@@ -9,6 +9,7 @@ Play in fullscreen or fullscreen windowed with your screen resolution set to 192
 ### To-Do
 - Keypress to control run resets
 - Setings for screen resolution
+- Executable
 - Boss rush mode
 
 ### Update 6/17
