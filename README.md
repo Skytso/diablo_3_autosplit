@@ -2,12 +2,16 @@
 Autosplitter for Diablo 3
 
 This is a python script that will autosplit Livesplit when speedrunning Diablo 3.
-Set your Livesplit hotkey to 'Numpad 0' and your screen resolution to 1920x1080.
 
-To-Do
-- Make script into an executable
-- Boss splits
+## Instructions
+Play in fullscreen or fullscreen windowed with your screen resolution set to 1920x1080. This script utilizes the [Livesplit Server](url=https://github.com/LiveSplit/LiveSplit.Server) component so make sure to have that installed and enabled.
+
+## To-Do
+- Keypress to control run resets
+- Setings for screen resolution
 - Boss rush mode
-- Input Livesplit hotkey and Screen Resolution
+
+## Update 6/17
+- Boss Splits
 - Refine trigger threshold
 - Refine regions
